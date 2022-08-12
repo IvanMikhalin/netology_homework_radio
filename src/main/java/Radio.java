@@ -12,13 +12,16 @@ public class Radio {
     }
 
     public void setDirectStation(int newcurrentStation) {
+
         if (newcurrentStation < 0) {
-            return;
+        return;
         }
         if (newcurrentStation > 9) {
             return;
         }
-        currentStation = newcurrentStation;
+        else {
+            currentStation = newcurrentStation;
+        }
     }
 
     public void setPrevStation(int newcurrentStation) {
@@ -31,8 +34,8 @@ public class Radio {
     }
 
     public void setNextStation(int newCurrentStation) {
-        if (newCurrentStation > 9) {
-            newCurrentStation = 0;
+        if (newCurrentStation == 9) {
+            currentStation = 0;
         }
         if (newCurrentStation < 9) {
             currentStation = newCurrentStation + 1;

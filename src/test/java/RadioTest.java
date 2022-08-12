@@ -15,6 +15,27 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldSetDirectStationIflessThenNull() {
+        Radio radio = new Radio();
+        radio.setDirectStation(-1);
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldSetDirectStationIflessThenNine() {
+        Radio radio = new Radio();
+        radio.setDirectStation(10);
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldSetPrevStation() {
         Radio radio = new Radio();
         radio.setPrevStation(9);
