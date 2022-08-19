@@ -27,8 +27,9 @@ public class RadioTest {
 
     @Test
     public void shouldSetDirectStationIfLessThenMin() {
-        radio.setDirectStation(radio.getMinStation() - 1);
 
+
+        radio.setDirectStation(radio.getMinStation() - 1);
         int expected = radio.getMinStation();
         int actual = radio.getCurrentStation();
 
@@ -37,7 +38,7 @@ public class RadioTest {
 
     @Test
     public void shouldSetDirectStationIfMoreThenMax() {
-        radio.setDirectStation(radio.getMaxStation() +1);
+        radio.setDirectStation(radio.getMaxStation() + 1);
 
         int expected = radio.getMinStation();
         int actual = radio.getCurrentStation();
@@ -47,8 +48,8 @@ public class RadioTest {
 
     @Test
     public void shouldSetPrevStation() {
-        radio.setPrevStation(9);
-
+        radio.setDirectStation(9);
+        radio.setPrevStation();
         int expected = 8;
         int actual = radio.getCurrentStation();
 
@@ -57,8 +58,8 @@ public class RadioTest {
 
     @Test
     public void shouldSetMaxStationIfPrevIsNull() {
-        radio.setPrevStation(radio.getMinStation());
-
+        radio.setDirectStation(radio.getMinStation());
+        radio.setPrevStation();
         int expected = radio.getMaxStation();
         int actual = radio.getCurrentStation();
 
@@ -67,9 +68,10 @@ public class RadioTest {
 
     @Test
     public void shouldSetNextStation() {
-        radio.setNextStation(0);
+        radio.setDirectStation(6);
+        radio.setNextStation();
 
-        int expected = 1;
+        int expected = 7;
         int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -77,7 +79,8 @@ public class RadioTest {
 
     @Test
     public void shouldSetNullStationIfCurrentIsMax() {
-        radio.setNextStation(radio.getMaxStation());
+        radio.setDirectStation(radio.getMaxStation());
+        radio.setNextStation();
 
         int expected = radio.getMinStation();
         int actual = radio.getCurrentStation();
@@ -87,7 +90,8 @@ public class RadioTest {
 
     @Test
     public void shouldSwitchVolumeUp() {
-        radio.setVolumeUp(9);
+        radio.setCurrentVolume(9);
+        radio.setVolumeUp();
 
         int expected = 10;
         int actual = radio.getCurrentVolume();
@@ -97,7 +101,8 @@ public class RadioTest {
 
     @Test
     public void shouldRemainMaxVolumeIfAlreadyMax() {
-        radio.setVolumeUp(radio.getMaxVolume());
+        radio.setCurrentVolume(radio.getMaxVolume());
+        radio.setVolumeUp();
 
         int expected = 100;
         int actual = radio.getCurrentVolume();
@@ -107,7 +112,8 @@ public class RadioTest {
 
     @Test
     public void shouldReduceVolume() {
-        radio.reduceVolume(9);
+        radio.setCurrentVolume(9);
+        radio.reduceVolume();
 
         int expected = 8;
         int actual = radio.getCurrentVolume();
@@ -117,8 +123,8 @@ public class RadioTest {
 
     @Test
     public void shouldRemainMinVolumeIfAlreadyMin() {
-        radio.reduceVolume(radio.getMinVolume());
-
+        radio.setCurrentVolume(radio.getMinVolume());
+        radio.reduceVolume();
         int expected = 0;
         int actual = radio.getCurrentVolume();
 
