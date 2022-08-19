@@ -3,31 +3,33 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
 
+    Radio radio = new Radio();
+
     @Test
     public void shouldSetDirectStation() {
-        Radio radio = new Radio();
-        radio.setDirectStation(4);
+
+        radio.setCurrentStation(4);
 
         int expected = 4;
         int actual = radio.getCurrentStation();
-
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void shouldSetDirectStationIflessThenNull() {
-        Radio radio = new Radio();
-        radio.setDirectStation(-1);
+
+        radio.setCurrentStation(-1);
 
         int expected = 0;
         int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldSetDirectStationIflessThenNine() {
-        Radio radio = new Radio();
-        radio.setDirectStation(10);
+
+        radio.setCurrentStation(10);
 
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -37,9 +39,9 @@ public class RadioTest {
 
     @Test
     public void shouldSetPrevStation() {
-        Radio radio = new Radio();
-        radio.setPrevStation(9);
 
+        radio.setCurrentStation(9);
+        radio.setPrevStation();
         int expected = 8;
         int actual = radio.getCurrentStation();
 
@@ -48,9 +50,8 @@ public class RadioTest {
 
     @Test
     public void shouldSetMaxStationIfPrevIsNull() {
-        Radio radio = new Radio();
-        radio.setPrevStation(0);
-
+        radio.setCurrentStation(0);
+        radio.setPrevStation();
         int expected = 9;
         int actual = radio.getCurrentStation();
 
@@ -59,8 +60,8 @@ public class RadioTest {
 
     @Test
     public void shouldSetNextStation() {
-        Radio radio = new Radio();
-        radio.setNextStation(0);
+        radio.setCurrentStation(0);
+        radio.setNextStation();
 
         int expected = 1;
         int actual = radio.getCurrentStation();
@@ -70,8 +71,8 @@ public class RadioTest {
 
     @Test
     public void shouldSetNullStationIfCurrentIsMax() {
-        Radio radio = new Radio();
-        radio.setNextStation(9);
+        radio.setCurrentStation(9);
+        radio.setNextStation();
 
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -81,8 +82,8 @@ public class RadioTest {
 
     @Test
     public void shouldSwitchVolumeUp() {
-        Radio radio = new Radio();
-        radio.setVolumeUp(9);
+        radio.setCurrentVolume(9);
+        radio.setVolumeUp();
 
         int expected = 10;
         int actual = radio.getCurrentVolume();
@@ -92,8 +93,8 @@ public class RadioTest {
 
     @Test
     public void shouldRemainMaxVolumeIfAlreadyMax() {
-        Radio radio = new Radio();
-        radio.setVolumeUp(10);
+        radio.setCurrentVolume(10);
+        radio.setVolumeUp();
 
         int expected = 10;
         int actual = radio.getCurrentVolume();
@@ -103,8 +104,8 @@ public class RadioTest {
 
     @Test
     public void shouldReduceVolume() {
-        Radio radio = new Radio();
-        radio.reduceVolume(9);
+        radio.setCurrentVolume(9);
+        radio.setVolumeDown();
 
         int expected = 8;
         int actual = radio.getCurrentVolume();
@@ -114,8 +115,8 @@ public class RadioTest {
 
     @Test
     public void shouldRemainNullVolumeIfAlreadyNull() {
-        Radio radio = new Radio();
-        radio.reduceVolume(0);
+        radio.setCurrentVolume(0);
+        radio.setVolumeDown();
 
         int expected = 0;
         int actual = radio.getCurrentVolume();
